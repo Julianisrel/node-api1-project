@@ -22,7 +22,7 @@ Use Node.js and Express to build an API that performs CRUD operations on users.
 ### Write endpoints
 
 Add the code necessary to create a Web API and implement the following _endpoints_:
-
+- Performing CRUD operations.
 | Method | URL            | Description                                                                                            |
 | ------ | -------------- | ------------------------------------------------------------------------------------------------------ |
 | POST   | /api/users     | Creates a user using the information sent inside the `request body`.                                   |
@@ -44,6 +44,7 @@ Each User _resource_ should conform to the following structure (AKA schema):
 ```
 
 #### Endpoint Specifications
+- Writing API endpoints.
 
 When the client makes a `POST` request to `/api/users`:
 
