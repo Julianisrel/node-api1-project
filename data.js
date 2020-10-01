@@ -2,9 +2,9 @@
 
 const users = [
     {
-        id: 1, 
-        name: "Julian Cole", 
-        bio: "Lambda Student, Full Stack",  
+        id: 1,
+        name: "Julian Cole",
+        bio: "Lambda Student, Full Stack",
       },
       {
         id: "2",
@@ -14,17 +14,9 @@ const users = [
     {
         id: "3",
         name: "John Jacobs",
-        bio: "The guy who wouldn't shut it!"
+        bio: "University of Califonia!"
     }
 
 ];
 
 module.exports = (users);
-
-
-
-
-
-
-
-

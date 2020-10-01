@@ -3,30 +3,22 @@ const uuid = require('uuid');
 const server = express();
 const users = require('./data');
 const e = require('express');
+const cors = require('cors')
 
-// Body Parser Middleware 
+// Body Parser Middleware
 server.use(express.json());
+server.use(cors());
 server.use(express.urlencoded({ extended: false}));
 
 
-
-
-
-
-
-
-
-
-
-
-// gets all users 
+ // gets all users
 server.get('/api/users', (req, res) => {
     res.json(users);
 });
 
 function getUserById(id){
     let user = null;
-    
+
     users.map(u => {
         console.log('id', id, u.id, String(u.id) === String(id))
         if (String(u.id) === String(id)) user = u
@@ -45,7 +37,7 @@ server.get('/api/users/:id', (req, res) => {
 
 
 
-// Creates a user using the information sent inside the `request 
+// Creates a user using the information sent inside the `request
 server.post('/api/users', (req, res) => {
     const newUser = {
      id: uuid.v4(),
@@ -55,8 +47,8 @@ server.post('/api/users', (req, res) => {
 }
      if(!newUser.name || !newUser.email) {
          return res.status(400).json({msg: 'Please include a name and email '});
-         
-     } 
+
+     }
      users.push(newUser);
      res.json(users);
 });
@@ -68,31 +60,31 @@ server.post('/api/users', (req, res) => {
 
 
 
-// put 
+// put
 /*  Updates the users information  */
 server.put('/api/:id', (req, res) => {
     const found = users.filter(user => user.id === parseInt(req.params.id));
-    
+
     if (found.length > 0) {
         const upUser =req.body;
         users.forEach(user =>  {
             if(user.id === parseInt(req.params.id)) {
                 user.name =updUser.name ?  upUser.name : user.name;
                 user.email = updUser.email ?  upUser.email : user.email;
-            
+
             res.json({msg: 'user was updated, member' });
             }
-        });  
+        });
     } else {
         res.status(400).json({msg: `No User with the id of ${req.params.id}`});
     }
 });
 
 
-// deletes a User  
+// deletes a User
 server.delete('/api/:id', (req, res) => {
     const found = users.filter(user => user.id === parseInt(req.params.id));
-    
+
     if (found.length > 0) {
         res.json({ msg: 'User deleted', });
     } else {
@@ -111,6 +103,3 @@ const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
     console.log(`Server started on port${PORT}`);
 })
-
-
-
